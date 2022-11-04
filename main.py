@@ -16,7 +16,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     # arguments usage implementation
     parser = argparse.ArgumentParser(
         description="""
-        Benchmark tests for prime numbers calculation algorithms in parallel
+        Parallel benchmark tests of algorithms to compute prime numbers
         """,
         epilog="""
                                          Usage example:
@@ -42,10 +42,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         sys.exit("Command-line argument is not a number, use -h for help")
 
     # Making a list of our algorithms
-    funcs: list = [
+    funcs: tuple = (
         benchmark_brute_prime_generator,
         benchmark_sieve_prime_generator,
-    ]
+    )
     # start the parallel run
     with concurrent.futures.ProcessPoolExecutor() as pool:
         for func in funcs:

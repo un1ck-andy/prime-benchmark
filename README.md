@@ -13,10 +13,12 @@ Usage example:
 `python main.py -n 100`
 
 ## Few comments:
-1. I used generators for prime numbers to save memory and because the task was literally to compare generators.
+1. I used generators to get prime numbers to save memory and because the task was literally to compare generators.
 2. I used parallel processes, not threads. The example in the task tells to use 'threads' for parallel running, but threads in Java and Python work very differently because of Global Interpreter Lock, which is in Python and is absent in Java. In fact, multithreading in python doesn't allow the utilization of multiple cores, so I used multiprocessing, which allows it to run in parallel. I used concurrent.futures library, so it can be easily switched between multithreading and multiprocessing just by replacing `concurrent.futures.ProcessPoolExecutor()` with `concurrent.futures.ThreadPoolExecutor()` on line 50 on main.py.
 3. The structure is a bit overkill, as well as usage of poetry here, but I wanted to show my regular workflow.
-4. I used pre-commit hook to run linters and formaters before upload.
+4. I used pre-commit hook to run linters and formaters before upload to comply with PEP8.
+5. I used concurrent.futures.ProcessPoolExecutor() because it's more scalable and easier to switch between multithreading and multiprocessing.
+6. I used a tuple of functions again for better scalability if need to add more algorithms. Tuple because it's faster than list and we don't need to mutate it.
 
 ## Follow-up Questions:
 1. Is there any measurable difference between the two algorithms for small values of N?
