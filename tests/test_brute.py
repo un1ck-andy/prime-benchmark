@@ -1,8 +1,8 @@
-from algorithms.sieve import sieve_prime_generator
+from algorithms.brute import brute_prime_generator
 
 
 def test_calculation():
-    assert list(sieve_prime_generator(100)) == [
+    assert list(brute_prime_generator(100)) == [
         2,
         3,
         5,
@@ -32,4 +32,4 @@ def test_calculation():
 
 
 def test_last_number_in_range():
-    assert list(sieve_prime_generator(11)) == [2, 3, 5, 7, 11]
+    assert list(brute_prime_generator(11)) == [2, 3, 5, 7, 11]
