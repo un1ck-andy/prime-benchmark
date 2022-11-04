@@ -33,7 +33,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     # A command-line argument the max value (N)
-    if args is None:
+    if argv is None:
         sys.exit("Missing command-line argument, use -h for help")
     # If argument is not int, the program should exit with an error message.
     try:
