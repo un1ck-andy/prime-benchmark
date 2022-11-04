@@ -33,13 +33,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     # A command-line argument the max value (N)
-    if argv is None:
+    if args.number is None:
         sys.exit("Missing command-line argument, use -h for help")
     # If argument is not int, the program should exit with an error message.
     try:
         max_value: int = int(args.number)
     except ValueError:
         sys.exit("Command-line argument is not a number, use -h for help")
+
     # Making a list of our algorithms
     funcs: list = [
         benchmark_brute_prime_generator,
