@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "prime-benchmark"
+version = "0.1.0"
+description = "A benchmark for two algorithms that look for prime numbers"
+authors = ["un1ck-andy <105160048+un1ck-andy@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "prime_benchmark"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+pytest = "^7.2.0"
+autoflake = "^1.7.7"
+pyupgrade = "^3.2.0"
+reorder-python-imports = "^3.9.0"
+flake8 = "^5.0.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
