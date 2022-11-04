@@ -1,5 +1,5 @@
-from functools import wraps
 import time
+from functools import wraps
 
 
 def time_it(func):
@@ -10,7 +10,7 @@ def time_it(func):
         end_time: float = time.perf_counter()
         run_time: float = end_time - start_time
         print(
-            f"{run_time:.10f} seconds to generate primes up to {args[0]} with {func.__name__}"
+            f"{run_time:.10f}s to get primes <={args[0]} with {func.__name__}"
         )
         return result
 
