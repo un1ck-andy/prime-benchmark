@@ -5,8 +5,8 @@ import sys
 from typing import Optional
 from typing import Sequence
 
-from brute import brute_prime_generator
-from sieve import sieve_prime_generator
+from algorithms.brute import brute_prime_generator
+from algorithms.sieve import sieve_prime_generator
 from time_wrapper import time_it
 
 
