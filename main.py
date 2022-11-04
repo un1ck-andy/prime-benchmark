@@ -1,19 +1,30 @@
 import argparse
 import concurrent.futures
+import os
 import sys
-import time
 from typing import Optional
 from typing import Sequence
 
 from brute import brute_prime_generator
 from sieve import sieve_prime_generator
+from time_wrapper import time_it
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     """Run parallel benchmark which algorithm is faster"""
 
     # arguments usage implementation
-    parser = argparse.ArgumentParser(    )
+    parser = argparse.ArgumentParser(
+        description="""
+        Benchmark tests for prime numbers calculation algorithms in parallel
+        """,
+        epilog="""
+                                         Usage example:
+                                         python {} -n 100
+                                         """.format(
+            os.path.basename(__file__)
+        ),
+    )
     parser.add_argument(
         "-n",
         "--number",
@@ -22,15 +33,18 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     # A command-line argument the max value (N)
-    if args == None:
+    if args is None:
         sys.exit("Missing command-line argument, use -h for help")
-    # If that argument cannot be converted to an int, the program should exit with an error message.
+    # If argument is not int, the program should exit with an error message.
     try:
         max_value: int = int(args.number)
     except ValueError:
         sys.exit("Command-line argument is not a number, use -h for help")
     # Making a list of our algorithms
-    funcs: list = [benchmark_brute_prime_generator, benchmark_sieve_prime_generator]
+    funcs: list = [
+        benchmark_brute_prime_generator,
+        benchmark_sieve_prime_generator,
+    ]
     # start the parallel run
     with concurrent.futures.ProcessPoolExecutor() as pool:
         for func in funcs:
@@ -38,27 +52,18 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     return 1
 
 
-
+@time_it
 def benchmark_sieve_prime_generator(max_value: int) -> int:
-    # just to kickstart generator and count time
-    start_time: float = time.perf_counter()
+    # just to kickstart generator
     result: list = list(sieve_prime_generator(max_value))
-    end_time: float = time.perf_counter()
-    run_time: float = end_time - start_time
-    print(
-        f"{run_time:.10f} seconds to generate primes up to {max_value} with Sieve"
-    )
+    return result
 
 
+@time_it
 def benchmark_brute_prime_generator(max_value: int) -> int:
-    # just to kickstart generator and count time
-    start_time: float = time.perf_counter()
+    # just to kickstart generator
     result: list = list(brute_prime_generator(max_value))
-    end_time: float = time.perf_counter()
-    run_time: float = end_time - start_time
-    print(
-        f"{run_time:.10f} seconds to generate primes up to {max_value} with Bruteforce"
-    )
+    return result
 
 
 if __name__ == "__main__":

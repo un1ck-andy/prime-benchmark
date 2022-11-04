@@ -16,6 +16,7 @@ autoflake = "^1.7.7"
 pyupgrade = "^3.2.0"
 reorder-python-imports = "^3.9.0"
 flake8 = "^5.0.4"
+pre-commit = "^2.20.0"
 
 [build-system]
 requires = ["poetry-core"]
